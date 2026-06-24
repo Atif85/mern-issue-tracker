@@ -1,19 +1,19 @@
-import mongoose, { connect } from "mongoose"
+import mongoose, { connect } from 'mongoose';
 
 const noteSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     content: {
       type: String,
-      required: true
+      required: true,
     },
-  }, 
+  },
   { timestamps: true }
 );
 
-const Note = mongoose.model("Note", noteSchema);
+const Note = mongoose.model('Note', noteSchema);
 
 export default Note;
