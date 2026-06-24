@@ -20,12 +20,22 @@ lerna-debug.log*
 .DS_Store
 Thumbs.db
 
-# IDE
+# IDE and editor files
 .vscode/
+!.vscode/extensions.json
 .idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 *.swp
 *.swo
 
 # Build outputs
 dist/
+dist-ssr/
 build/
+
+# Local config
+*.local
