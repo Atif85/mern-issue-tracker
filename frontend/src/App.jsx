@@ -6,11 +6,8 @@ import toast from 'react-hot-toast';
 
 const App = () => {
   return (
-    <div>
-      <button
-        onClick={() => toast.success('Done')}
-        className="text-red-50 p-4 bg-blue-300"
-      >
+    <div data-theme="dim">
+      <button onClick={() => toast.success('Done')} className="btn btn-primary">
         Test Toast
       </button>
 
