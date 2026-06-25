@@ -1,5 +1,5 @@
 {
-  "name": "mern-notes-simple",
+  "name": "mern-issue-tracker",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Atif85/mern-notes-simple.git"
+    "url": "git+https://github.com/Atif85/mern-issue-tracker.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/Atif85/mern-notes-simple/issues"
+    "url": "https://github.com/Atif85/mern-issue-tracker/issues"
   },
-  "homepage": "https://github.com/Atif85/mern-notes-simple#readme"
+  "homepage": "https://github.com/Atif85/mern-issue-tracker#readme"
 }
