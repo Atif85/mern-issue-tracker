@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
-import api from "../lib/axios";
+import api from '../lib/axios';
 import NoteCard from '../components/NoteCard';
+import NotesNotFound from '../components/NotesNotFound';
 
 const HomePage = () => {
   const [notes, setNotes] = useState([]);
@@ -10,7 +11,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const res = await api.get("/notes");
+        const res = await api.get('/notes');
         console.log(res.data);
         setNotes(res.data);
       } catch (error) {
@@ -31,10 +32,12 @@ const HomePage = () => {
           <div className="text-center text-primary py-10">Loading notes...</div>
         )}
 
+        {notes.length === 0 && <NotesNotFound />}
+
         {notes.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {notes.map((note) => (
-              <NoteCard key={note._id} note={note} />
+              <NoteCard key={note._id} note={note} setNotes={setNotes} />
             ))}
           </div>
         )}
