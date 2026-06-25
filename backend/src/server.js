@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
 
-import notesRoutes from './routes/notesRoutes.js';
+import issuesRoutes from './routes/issuesRoutes.js';
 import { connectDB } from './config/db.js';
 
 dotenv.config();
@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(express.json());
-app.use('/api/notes', notesRoutes);
+app.use('/api/issues', issuesRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/dist')));
