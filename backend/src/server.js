@@ -3,6 +3,8 @@ dns.setServers(['1.1.1.1', '1.0.0.1']);
 
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
+
 import notesRoutes from './routes/notesRoutes.js';
 import { connectDB } from './config/db.js';
 
@@ -13,8 +15,10 @@ const PORT = process.env.PORT || 5001;
 
 // middleware
 app.use(express.json());
-
 app.use('/api/notes', notesRoutes);
+app.use(cors({
+  origin: "http://localhost:5173/"
+}));
 
 connectDB().then(() => {
   app.listen(PORT, () => {
