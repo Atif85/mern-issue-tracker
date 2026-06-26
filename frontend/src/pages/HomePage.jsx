@@ -223,7 +223,7 @@ const HomePage = () => {
               {selectedProjects.map((project) => (
                 <span
                   key={project}
-                  className="badge badge-sm badge-secondary gap-1 pr-1 font-semibold"
+                  className="badge badge-md badge-secondary gap-1 pr-1 font-semibold"
                 >
                   {project}
                   <button
