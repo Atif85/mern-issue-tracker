@@ -33,7 +33,12 @@ const issueSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
-    }
+    },
+    estimatedSize: {
+      type: Number,
+      default: 5 * 1024,
+      min: 0,
+    },
   },
   { timestamps: true }
 );

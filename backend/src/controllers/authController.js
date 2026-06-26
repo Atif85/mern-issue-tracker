@@ -1,9 +1,17 @@
 import { sign } from 'jsonwebtoken';
-import User, { findOne } from '../models/User';
+import User from '../models/User.js';
+
+const MAX_USERS = 50;
 
 export async function registerUser(req, res) {
   try {
     const { username, email, password, inviteCode } = req.body;
+
+    if (!process.env.INVITE_CODE) {
+      return res
+        .status(500)
+        .json({ message: 'Server not configured with invite code' });
+    }
 
     // Verify invite code
     if (inviteCode !== process.env.INVITE_CODE) {
@@ -15,8 +23,16 @@ export async function registerUser(req, res) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
+    const totalUsers = await User.countDocuments();
+    if (totalUsers >= MAX_USERS) {
+      return res.status(403).json({
+        message:
+          'User limit reached. No new accounts can be created at this time.',
+      });
+    }
+
     // Check if user already exists
-    const existingUser = await findOne({ $or: [{ email }, { username }] });
+    const existingUser = await User.findOne({ $or: [{ email }, { username }] });
     if (existingUser) {
       return res
         .status(400)
@@ -38,6 +54,8 @@ export async function registerUser(req, res) {
         id: newUser._id,
         username: newUser.username,
         email: newUser.email,
+        storageUsed: newUser.storageUsed,
+        storageLimit: newUser.storageLimit,
       },
     });
   } catch (error) {
@@ -55,7 +73,7 @@ export async function loginUser(req, res) {
     }
 
     // Find user by email
-    const user = await findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
@@ -73,12 +91,16 @@ export async function loginUser(req, res) {
 
     res.json({
       token,
-      user: { id: user._id, username: user.username, email: user.email },
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        storageUsed: user.storageUsed,
+        storageLimit: user.storageLimit,
+      },
     });
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ message: 'Server error during login' });
   }
 }
-
-export default router;

@@ -22,6 +22,16 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
     },
+    storageUsed: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+    storageLimit: {
+      type: Number,
+      default: 5 * 1024 * 1024, // 5 MB per account
+      immutable: true,
+    },
   },
   { timestamps: true }
 );
@@ -47,4 +57,4 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password);
 };
 
-module.exports = mongoose.model('User', userSchema);
+export default mongoose.model('User', userSchema);
