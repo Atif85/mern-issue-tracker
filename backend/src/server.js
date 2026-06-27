@@ -7,7 +7,7 @@ import cors from 'cors';
 import path from 'path';
 
 import issuesRoutes from './routes/issuesRoutes.js';
-import authRoutes from './routes/authRoutes.js'; 
+import authRoutes from './routes/authRoutes.js';
 import { connectDB } from './config/db.js';
 
 dotenv.config();
@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.json());
 
-app.use('/api/auth', authRoutes); 
+app.use('/api/auth', authRoutes);
 app.use('/api/issues', issuesRoutes);
 
 if (process.env.NODE_ENV === 'production') {

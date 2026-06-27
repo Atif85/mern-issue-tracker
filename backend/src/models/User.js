@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
     },
+    recoveryCodeHash: String,
     storageUsed: {
       type: Number,
       default: 0,

@@ -76,8 +76,9 @@ export async function createIssue(req, res) {
   try {
     const { title, description, project, type, status, priority } = req.body;
     const issueSize = estimateIssueSize({ title, description, project, type, status, priority });
+    const userId = req.userId;
 
-    const user = await User.findById(req.userId);
+    const user = await User.findById(userId);
     if (!user) return res.status(401).json({ message: 'User not found' });
 
     if (user.storageUsed + issueSize > user.storageLimit) {
@@ -93,7 +94,7 @@ export async function createIssue(req, res) {
       type,
       status,
       priority,
-      user: req.userId,
+      user: userId,
       estimatedSize: issueSize,
     });
 
