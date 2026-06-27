@@ -160,7 +160,7 @@ const HomePage = () => {
 
           <div className="flex flex-wrap items-center gap-2">
             {/* Multi-select Dropdown Filter */}
-            <div className="dropdown dropdown-end">
+            <div className="dropdown sm:dropdown-end">
               <div
                 tabIndex={0}
                 role="button"
@@ -176,7 +176,7 @@ const HomePage = () => {
               </div>
               <div
                 tabIndex={0}
-                className="dropdown-content z-[40] card card-compact w-64 p-2 shadow-xl bg-base-200 mt-2 border border-base-content/10"
+                className="dropdown-content z-[40] card card-compact w-full sm:w-64 p-2 shadow-xl bg-base-200 mt-2 border border-base-content/10"
               >
                 <div className="card-body">
                   <h3 className="card-title text-xs uppercase tracking-wider text-base-content/60">
